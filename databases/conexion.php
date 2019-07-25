@@ -1,4 +1,5 @@
 <?php
+include('Credenciales.php');
 
 
 class PDOConnection {
@@ -8,21 +9,11 @@ class PDOConnection {
     function __construct() {
         try {
 
-           
-            $db_username    = "inter";
-            $db_password    = "I48BBB43C11F6EC0A0AC7A18E1F5D5";
-            $dbtns          = "(DESCRIPTION = 
-    (ADDRESS_LIST = 
-        (ADDRESS = 
-          (COMMUNITY = tcp.world)
-          (PROTOCOL = TCP)
-          (Host = 10.150.30.20)
-          (Port = 1195)
-        )
-    )
-    (CONNECT_DATA = (SID = SFBA0708)
-    )
-  )";
+            $a=new Credenciales();
+			$env=$a->env();
+            $db_username    = $env['DB_USERNAME'];
+            $db_password    = $env['DB_PASSWORD'];
+            $dbtns          = $env['DB_HOST'];
 			
 
             //$this->dbh = new PDO("mysql:host=".$server.";dbname=".dbname, $db_username, $db_password);
